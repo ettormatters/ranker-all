@@ -15,6 +15,7 @@ import {
 import Icon from 'react-native-vector-icons/Ionicons';
 import { client } from '../App';
 import gql from "graphql-tag";
+import { ApolloProvider } from "react-apollo";
 
 class Create extends React.Component {
   
@@ -26,32 +27,29 @@ class Create extends React.Component {
     };
   }
 
-handleSubmit = (data) => {
-    let mutation = `
-      mutation{
-        createPost(title: data.title, content: data.content){
-          title
-          content
-        }
-      }    
-    `;
-    fetch('/graphql', {
+  handleSubmit = (data) => {
+    fetch('http://172.16.11.152:4000/graphql', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       },
-      body: JSON.stringify({
-        mutation
-      })
+      body: JSON.stringify({ query: `{
+          posts {
+              title
+              content
+          }
+      }`})
     })
       .then(res => res.json())
-      .then(returneddata => console.log('data returned:', returneddata))
-      .catch()
+      .then(rd => console.log('data returned:', rd))
+    return 0;
+
   };
 
   render(){
     return(
+      
       <View>
         <View style={{
           backgroundColor: 'rgba(255,255,255,0.3)',
@@ -101,7 +99,7 @@ handleSubmit = (data) => {
               alignItems: 'flex-end',
               flex: 1
             }}
-            onPress = {this.handleSubmit(this.state)}
+            onPress = {this.handleSubmit()}
           >
             <Text>Save</Text>
           </TouchableOpacity>
@@ -139,6 +137,7 @@ handleSubmit = (data) => {
           </Text>
       </View>
       </View>
+      
     )
   }
 }
@@ -159,17 +158,33 @@ style={{
 />*/
 
 /*
-client
-    .mutate({
-        mutaion: gql`
-        {
-            createPost( title : data.title, content: data.content ) {
-            title
-            content
+client.mutate({
+                  mutaion: gql`
+                  mutation {
+                      createPost( title : $data.title, content: $data.content ) {
+                      title
+                      content
+                      }
+                  }
+                  `
+              }).then(result => console.log(result))
             }
-        }
-        `
-    })
-    .then(result => console.log(result));
-    return 0;
     */
+
+    /*
+      client
+      .mutate({
+          mutaion: gql`
+          mutation {
+              createPost( title : $data.title, content: $data.content ) {
+              title
+              content
+              }
+          }
+          `
+      })
+      .then(result => console.log(result));
+      
+      */
+
+      /**/

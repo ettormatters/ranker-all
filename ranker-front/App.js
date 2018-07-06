@@ -10,6 +10,7 @@ import Bookmark from './screens/Bookmark';
 import Profile from './screens/Profile';
 import Ready from './screens/Ready';
 import Create from './screens/Create';
+import { ApolloProvider } from "react-apollo";
 
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
@@ -55,7 +56,9 @@ const AppSwitch =  createSwitchNavigator(
 
 class App extends Component {
   render(){
-    return < AppSwitch />
+    return(
+        < AppSwitch />
+    )
   }
 }
 

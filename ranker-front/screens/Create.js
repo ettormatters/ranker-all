@@ -13,7 +13,7 @@ import {
   Alert
  } from 'react-native';
 import Icon from 'react-native-vector-icons/Ionicons';
-import { createStackNavigator } from 'react-navigation';
+import { client } from '../App';
 import gql from "graphql-tag";
 
 class Create extends React.Component {
@@ -26,23 +26,29 @@ class Create extends React.Component {
     };
   }
 
-handleSubmit(data) {
-  client
-            .mutate({
-                mutaion: gql`
-                {
-                    createPost( title : data.title, content: data.content ) {
-                    title
-                    content
-                    }
-                }
-                `
-            })
-            .then(result => console.log(result));
-            return 0;
-  //import client and mutation test + title repetation avoidance(mongoose)
-  // fetch + mutationQuery / graphql server got it and resolver function call db.insert
-}
+handleSubmit = (data) => {
+    let mutation = `
+      mutation{
+        createPost(title: data.title, content: data.content){
+          title
+          content
+        }
+      }    
+    `;
+    fetch('/graphql', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+      },
+      body: JSON.stringify({
+        mutation
+      })
+    })
+      .then(res => res.json())
+      .then(returneddata => console.log('data returned:', returneddata))
+      .catch()
+  };
 
   render(){
     return(
@@ -103,7 +109,9 @@ handleSubmit(data) {
         <View>
           <TextInput
             style={{
-              fontSize: 30
+              fontSize: 30,
+              paddingLeft: 20,
+              paddingRight: 20,
             }}
             multiline = {false}
             placeholder = "Title."
@@ -149,3 +157,19 @@ style={{
   paddingTop: 28
 }}
 />*/
+
+/*
+client
+    .mutate({
+        mutaion: gql`
+        {
+            createPost( title : data.title, content: data.content ) {
+            title
+            content
+            }
+        }
+        `
+    })
+    .then(result => console.log(result));
+    return 0;
+    */

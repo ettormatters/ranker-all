@@ -12,6 +12,6 @@
 - re-git-repository => { rer to ranker-all }
 - graphQL document (howtographql) => understood.
 - mongoose connection success with graphQL mutation. 
-
+- - -
 - export and appRegistry problem => 
 - using issues? =>

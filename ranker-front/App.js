@@ -18,7 +18,7 @@ const instructions = Platform.select({
     'Shake or press menu button for dev menu',
 });
 
-const client = new ApolloClient({
+export const client = new ApolloClient({
   uri: "localhost:4000/graphql"
 });
 

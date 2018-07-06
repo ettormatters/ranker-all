@@ -30,7 +30,7 @@ class Ready extends React.Component {
         flex:1
       }}>
         <TouchableOpacity
-            onPress={ () => this.props.navigation.navigate('Create')}
+            onPress={ () => this.props.navigation.navigate('Create') }
         >
             <Text style={{ color: 'black' }}>Are you ready?</Text>
         </TouchableOpacity>
@@ -44,3 +44,4 @@ export default Ready;
 //renderCreateView: false
 //this._renderCreateView = this._renderCreateView.bind(this);
 //this._onPress = this._onPress.bind(this);
+//

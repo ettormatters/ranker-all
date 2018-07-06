@@ -9,7 +9,7 @@ const typeDefs = [`
   }
 
   type Mutation {
-    createPost(title:String!, content:String!): Post! 
+    createPost(title:String!, content:String!): Post 
   }
 
   schema {
@@ -21,5 +21,3 @@ const typeDefs = [`
 export default typeDefs;
 
 //date: { type: Date, default: Date.now }
-
-// Post ! 필수 없애면 되자나

@@ -28,21 +28,26 @@ class Create extends React.Component {
   }
 
   handleSubmit = (data) => {
-    fetch('http://172.16.11.152:4000/graphql', {
+    fetch('http://10.210.96.242:4000/graphql', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       },
-      body: JSON.stringify({ query: `{
-          posts {
+      body: JSON.stringify({ 
+        Mutation: `{
+          createPost(title:"but",content:"yes") {
               title
               content
           }
-      }`})
+        }`,
+        variables: {
+          
+        }
+      })
     })
       .then(res => res.json())
-      .then(rd => console.log('data returned:', rd))
+      .then(rd => console.log(rd))
     return 0;
 
   };
@@ -99,7 +104,7 @@ class Create extends React.Component {
               alignItems: 'flex-end',
               flex: 1
             }}
-            onPress = {this.handleSubmit()}
+            onPress = { () => this.handleSubmit(this.state) }
           >
             <Text>Save</Text>
           </TouchableOpacity>

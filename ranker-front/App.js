@@ -34,13 +34,13 @@ const AppBottom = createBottomTabNavigator({
     inactiveTintColor : 'grey',
     showLabel: false,
     style: {
-      backgroundColor: 'white',
-      shadowColor: 'black',
+      backgroundColor: 'rgba(255,255,255,0.3)',
+      shadowColor: 'grey',
       shadowOffset:{
-        width: 100,
-        height: 100
+        width: 0,
+        height: 3
       },
-      shadowOpacity: 1
+      shadowOpacity: 10
     }
   }
  });

@@ -28,22 +28,22 @@ class Create extends React.Component {
   }
 
   handleSubmit = (data) => {
-    fetch('http://10.210.96.242:4000/graphql', {
+    fetch('http://192.168.1.235:4000/graphql', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'Accept': 'application/json',
       },
       body: JSON.stringify({ 
-        Mutation: `{
-          createPost(title:"but",content:"yes") {
+        query:`{
+          mutation createPost(title:"but",content:"yes") {
               title
               content
           }
-        }`,
+      }`/*,
         variables: {
           
-        }
+        }*/
       })
     })
       .then(res => res.json())
